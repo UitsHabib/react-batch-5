@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Button from './button.component';
 
 const TodoHeader = () => {
+    const navigate = useNavigate();
+    
     return (
         <>
             <div className="card-header text-center">
@@ -12,6 +16,7 @@ const TodoHeader = () => {
                 <Button 
                     text="Add"
                     className="btn btn-primary"
+                    event={() => navigate("/todos/add")}
                 />
             </div>
             <br/>

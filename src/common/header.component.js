@@ -34,6 +34,10 @@ export default Header;
         ii. routes
         iii. route
     11. formik
+    10. stateful functional component
+    11. hooks
+        i. useState
+        ii. useEffect
 */
 
 /*
@@ -43,4 +47,11 @@ export default Header;
     3. put -> update fully //// user ( name, email, password, phone, address)
     4. patch -> update partially
     5. delete -> delete something from server
+*/
+
+/*
+    1. promise
+    2. callback hell
+    3. async await
+    4. try ... catch
 */

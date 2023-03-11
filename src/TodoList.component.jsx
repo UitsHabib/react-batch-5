@@ -1,43 +1,43 @@
-import React, { Component } from 'react';
-import Button from './common/button.component';
+import React, { useState, useEffect } from 'react';
 import Todo from './common/todo.component';
 import TodoHeader from './common/TodoHeader.component';
 import axios from 'axios';
 
-class TodoList extends Component {
-    state = {
-        todoList: []
-    } 
+function TodoList () {
+    const [todoList, setTodoList] = useState([]); 
 
-    componentDidMount() {
-        
-        axios.get('https://dummyjson.com/todos')
-            .then(res => {
-                console.log(res.data.todos)
-                this.setState({ todoList: res.data.todos });
-            })
-            .catch(err => {
+    useEffect(() => {
+        async function getTodos() {
+            try {
+                const res = await axios.get('https://dummyjson.com/todos/user/1?limit=0');
+    
+                console.log(res.data.todos);
+    
+                setTodoList(res.data.todos);
+            }
+            catch(err) {
                 console.log(err);
-                alert("An error occured");
-            })
+                alert('Error happened');
+            }
+        }
 
-    }
+        getTodos();
+    }, []);
 
-    render() { 
-        return (
-            <div className='container'>
-                <div className='card'>
-                    <TodoHeader />
+    
+    return (
+        <div className='container'>
+            <div className='card'>
+                <TodoHeader />
 
-                    {
-                        this.state.todoList.map((todo, index) => {
-                            return <Todo todo={todo.todo}/>
-                        })
-                    }
-                </div>
+                {
+                    todoList.map((todo, index) => {
+                        return <Todo key={index} todo={todo.todo}/>
+                    })
+                }
             </div>
-        );
-    }
+        </div>
+    );
 }
  
 export default TodoList;
